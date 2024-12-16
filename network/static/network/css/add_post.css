@@ -4,8 +4,8 @@
     padding: 40px;
     width: 100%;
     background-color: #ffffff;
-    overflow-y: auto; /* اجازه اسکرول فقط برای محتوا */
-    height: 100vh; /* برای جلوگیری از اسکرول در سطح کل صفحه */
+    overflow-y: auto;
+    height: 100vh;
 
 }
 
@@ -31,14 +31,14 @@
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
-    background: #4e73df; /* رنگ ثابت قالب */
+    background: #4e73df;
     padding: 15px 20px;
-    border-radius: 12px 12px 0 0; /* فقط بالای کارت گرد باشد */
+    border-radius: 12px 12px 0 0;
     text-align: center;
-    margin: -30px -25px 20px -25px; /* چسباندن کامل به لبه‌های کارت */
+    margin: -30px -25px 20px -25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    animation: fadeIn 1s ease-in-out; /* انیمیشن برای عنوان */
+    animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -112,8 +112,8 @@ button[type="submit"]:focus {
 img#preview {
     width: 356px;
     height: 356px;
-    object-fit: cover; /* برای حفظ تناسب تصویر */
-    border-radius: 20px; /* گوشه‌های گرد */
+    object-fit: cover;
+    border-radius: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease;

@@ -8,20 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 document.getElementById("image").addEventListener("change", function (event) {
-    const file = event.target.files[0]; // دریافت فایل انتخاب‌شده
-    const preview = document.getElementById("preview"); // المان پیش‌نمایش
+    const file = event.target.files[0];
+    const preview = document.getElementById("preview");
     let original_crc = preview.src
 
     if (file) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            preview.src = e.target.result; // تنظیم URL تصویر به پیش‌نمایش
+            preview.src = e.target.result;
         };
 
-        reader.readAsDataURL(file); // خواندن فایل و تبدیل به URL
+        reader.readAsDataURL(file);
     } else {
-        // بازگشت به تصویر پیش‌فرض اگر فایلی انتخاب نشود
+
         if (location.pathname === '/profile_edit/') {
             preview.src = original_crc
         }

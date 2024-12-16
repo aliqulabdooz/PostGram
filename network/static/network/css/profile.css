@@ -101,22 +101,22 @@ img.card-img-top.hover-inner-zoom {
     /*text-align: center;*/
 }
 
-/* خط جداکننده */
 
-/* متن کارت */
+
+
 .custom-card .card-text {
     font-size: 0.95rem;
     color: #555;
-    text-align: justify; /* تراز متن برای خوانایی بهتر */
+    text-align: justify;
 }
 
-/* انیمیشن هنگام کلیک */
+
 .custom-card:active {
-    transform: translateY(0); /* بازگشت سریع */
+    transform: translateY(0);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* کارت خالی پست‌ها */
+
 .empty-post-card {
     max-width: 700px;
     width: 100%;
@@ -124,37 +124,37 @@ img.card-img-top.hover-inner-zoom {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px; /* گوشه‌های گرد زیبا */
+    border-radius: 12px;
     background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* سایه ملایم */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* انیمیشن */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* انیمیشن کارت در حالت هاور */
+
 .empty-post-card:hover {
-    transform: translateY(-5px); /* حرکت کارت به بالا */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* افزایش سایه */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* دکمه ایجاد پست */
+
 .empty-post-btn {
-    transition: all 0.3s ease; /* انیمیشن عمومی برای دکمه */
+    transition: all 0.3s ease;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 8px; /* فاصله بین آیکون و متن */
+    gap: 8px;
 }
 
-/* انیمیشن دکمه در هاور */
+
 .empty-post-btn:hover {
-    background-color: #0056b3; /* تغییر رنگ دکمه */
-    transform: translateY(-2px); /* حرکت دکمه به بالا */
+    background-color: #0056b3;
+    transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
-/* متن داخل کارت */
+
 .empty-post-card .card-title {
     font-size: 1.5rem;
     font-weight: bold;
