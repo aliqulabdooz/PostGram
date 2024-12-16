@@ -1,3 +1,4 @@
+let original_src = document.getElementById('preview').src
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.title')) {
         document.getElementById('title').focus()
@@ -5,13 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#preview').addEventListener('click', () => {
         document.querySelector('#image').click()
     })
-
 })
 document.getElementById("image").addEventListener("change", function (event) {
     const file = event.target.files[0];
     const preview = document.getElementById("preview");
-    let original_crc = preview.src
-
     if (file) {
         const reader = new FileReader();
 
@@ -23,9 +21,10 @@ document.getElementById("image").addEventListener("change", function (event) {
     } else {
 
         if (location.pathname === '/profile_edit/') {
-            preview.src = original_crc
+            preview.src = original_src
+        } else {
+            preview.src = "https://via.placeholder.com/150";
         }
-        preview.src = "https://via.placeholder.com/150";
     }
 
 });
