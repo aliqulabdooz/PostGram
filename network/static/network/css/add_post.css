@@ -38,16 +38,6 @@
     margin: -30px -25px 20px -25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 }
 
 .form-label {
