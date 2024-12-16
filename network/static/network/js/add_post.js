@@ -15,7 +15,7 @@ document.getElementById("image").addEventListener("change", function (event) {
 
         reader.onload = function (e) {
             preview.src = e.target.result;
-        };
+        }
 
         reader.readAsDataURL(file);
     } else {

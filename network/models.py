@@ -1,10 +1,11 @@
 from django.db import models
 from django.db.models import Q
 from accounts.models import CustomUser
+from django.conf import settings
 
 
 class Post(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_posts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_posts')
     image_post = models.ImageField(upload_to='network/', default='network/no-image.png')
     title = models.CharField(max_length=50, blank=False)
     caption = models.TextField(blank=True)
@@ -20,5 +21,3 @@ class Post(models.Model):
         if not self.caption:
             self.caption = 'No text is included for the post.'
         super().save(*args, **kwargs)
-
-
