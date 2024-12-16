@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    Page Not Found
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="main-content">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="error-content text-center">
+                <h1 class="display-1">404</h1>
+                <h2 class="mb-3 error-text">Oops! Page not found</h2>
+                <p>The page you are looking for does not exist or has been moved.</p>
+                <a href="{% url 'network:profile_view' request.user.slug %}" class="btn btn-primary">Go to Profile</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

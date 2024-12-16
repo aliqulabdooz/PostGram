@@ -1,0 +1,142 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #eef2f7;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+.login-container, .signup-container {
+    max-width: 650px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-top: 6px solid #0B3E74;
+    animation: fadeIn 1s ease-out;
+    display: none;
+}
+
+.login-container.active, .signup-container.active {
+    display: block;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 120px;
+
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #0B3E74;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.form-group {
+    width: 48%;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #f9fafc;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    border-color: #0B3E74;
+    box-shadow: 0 0 0 0.2rem rgba(11, 62, 116, 0.25);
+}
+
+
+.btn-primary {
+    background-color: #0B3E74;
+    width: 100%;
+    border-color: #0B3E74;
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #08416A;
+    transform: scale(1.05);
+}
+
+.switch-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #0B3E74;
+    cursor: pointer;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #0B3E74;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out;
+}
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

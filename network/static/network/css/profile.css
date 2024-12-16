@@ -1,0 +1,169 @@
+.main-content {
+    padding-top: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    background-color: #f9f9f9; /* رنگ پس‌زمینه ملایم */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* سایه زیبا */
+    margin-bottom: 20px;
+}
+
+/* استایل آیکون نوتیفیکیشن کنار یوزرنیم */
+.notification {
+    font-size: 1.5rem;
+    color: #007bff; /* رنگ آبی هماهنگ */
+    cursor: pointer;
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.notification:hover {
+    transform: scale(1.2); /* افکت بزرگ‌تر شدن هنگام هاور */
+    color: #0056b3; /* تغییر رنگ هنگام هاور */
+}
+
+/* نشان تعداد نوتیفیکیشن‌ها (اختیاری) */
+.notification::after {
+    content: '5'; /* تعداد نوتیفیکیشن‌ها */
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* استایل یوزرنیم */
+.profile-section h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Card Styles for Posts */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* انیمیشن زوم داخلی */
+
+img.card-img-top.hover-inner-zoom {
+    width: 100%;
+    height: 365px;
+}
+
+
+.custom-card {
+    border-radius: 12px; /* گوشه‌های گرد برای زیبایی */
+    overflow: hidden; /* جلوگیری از بیرون‌زدن محتوای کارت */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* انیمیشن هنگام هاور */
+    cursor: pointer; /* نشانگر دست برای جذابیت بیشتر */
+}
+
+/* انیمیشن کارت در حالت هاور */
+.custom-card:hover {
+    transform: translateY(-5px); /* حرکت کارت به بالا */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* افزایش سایه */
+}
+
+.custom-card .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    /*text-align: center;*/
+}
+
+/* خط جداکننده */
+
+/* متن کارت */
+.custom-card .card-text {
+    font-size: 0.95rem;
+    color: #555;
+    text-align: justify; /* تراز متن برای خوانایی بهتر */
+}
+
+/* انیمیشن هنگام کلیک */
+.custom-card:active {
+    transform: translateY(0); /* بازگشت سریع */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* کارت خالی پست‌ها */
+.empty-post-card {
+    max-width: 700px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* گوشه‌های گرد زیبا */
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* انیمیشن */
+}
+
+/* انیمیشن کارت در حالت هاور */
+.empty-post-card:hover {
+    transform: translateY(-5px); /* حرکت کارت به بالا */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* افزایش سایه */
+}
+
+/* دکمه ایجاد پست */
+.empty-post-btn {
+    transition: all 0.3s ease; /* انیمیشن عمومی برای دکمه */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* فاصله بین آیکون و متن */
+}
+
+/* انیمیشن دکمه در هاور */
+.empty-post-btn:hover {
+    background-color: #0056b3; /* تغییر رنگ دکمه */
+    transform: translateY(-2px); /* حرکت دکمه به بالا */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* متن داخل کارت */
+.empty-post-card .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.empty-post-card .card-text {
+    font-size: 1rem;
+    color: #666;
+}
+
+

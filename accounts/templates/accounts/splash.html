@@ -1,0 +1,17 @@
+{% extends 'accounts/_layout.html' %}
+{% load static %}
+{% block title %}
+    Home Page
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'accounts/css/splash.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="redirect_url" data-redirect-url="{{ redirect_url }}"></div>
+    <div class="text-center">
+        <img src="{% static 'images/postgram.png' %}" alt="Logo" class="logo" style="width: 300px;">
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'accounts/js/splash.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    All Posts
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'network/css/all_post.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="main-content p-4">
+        <div class="container">
+            <div class="posts-container mx-auto">
+                {% for post in posts %}
+                    <div class="post-card mb-4" id="{{ post.id }}">
+                        <!-- هدر پست -->
+                        <div class="post-header d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <a href="{% url 'network:profile_view' post.user.slug %}" style=" text-decoration: none; color: black;">
+                                    <img src="{{ post.user.image_profile.url }}" alt="Profile Picture"
+                                         class="rounded-circle me-1"
+                                         style="width: 50px; height: 50px; object-fit: cover;">
+                                    <span class="fw-bold">{{ post.user.username }}</span>
+                                </a>
+                            </div>
+                            <div class="post-options">
+                                <i class="bi bi-three-dots"></i>
+                            </div>
+                        </div>
+                        <!-- تصویر پست -->
+                        <div class="post-image text-center">
+                            <img src="{{ post.image_post.url }}" alt="Post Image"
+                                 class="rounded shadow-sm img-fluid" style="width: 500px; height: 500px">
+                        </div>
+                        <!-- عنوان و کپشن -->
+                        <div class="post-details mt-3">
+                            <h5 class="fw-bold">{{ post.title }}</h5>
+                            <p class="post-caption text-truncate" id="caption-{{ forloop.counter }}">
+                                {{ post.caption }}
+                            </p>
+                            <button class="btn btn-link p-0" onclick="toggleCaption('caption-{{ forloop.counter }}')">
+                                read more
+                            </button>
+                        </div>
+                        <!-- ایکون‌ها -->
+                        <div class="post-actions d-flex justify-content-between mt-3">
+                            <div>
+                                <i class="bi bi-heart me-3"></i>
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <i class="bi bi-bookmark"></i>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'network/js/all_post.js' %}"></script>
+{% endblock %}

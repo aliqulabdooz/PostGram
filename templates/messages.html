@@ -1,0 +1,13 @@
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="error-message">
+                <ul>
+                    <li>{{ message }}</li>
+                    <li class="close-error">x</li>
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endif %}

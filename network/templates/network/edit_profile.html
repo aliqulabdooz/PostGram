@@ -1,0 +1,72 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+    Edit Profile
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'network/css/edit_profile.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>Edit Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Username -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" id="username" name="username" class="form-control"
+                                       value="{{ request.user.username }}" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control"
+                                       value="{{ request.user.email }}" required>
+                            </div>
+
+                            <!-- Profile Image -->
+                            <div class="mb-3">
+                                <label for="image_profile" class="form-label">Profile Image</label>
+                                <div class="d-flex align-items-center">
+                                    <!-- Preview Section -->
+                                    <img id="preview" src="{{ request.user.image_profile.url }}" alt="Profile Preview"
+                                         class="rounded-circle me-3" style="width: 100px; height: 100px; object-fit: cover;
+                                     border: 2px solid #ddd;">
+                                    <input type="file" id="image" name="image_profile" class="form-control"
+                                           accept="image/*">
+                                </div>
+                                <small class="text-muted">Choose a new profile picture to upload.</small>
+                            </div>
+
+                            <!-- Bio -->
+                            <div class="mb-3">
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea id="bio" name="bio" rows="4" class="form-control">{{ request.user.bio }}</textarea>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'network:profile_view' user.slug %}" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'network/js/add_post.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #007bff; /* آبی */
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+/* Logo Styles */
+#sidebar .logo-container {
+    text-align: center;
+    margin-bottom: 30px; /* فاصله بین لوگو و لینک‌های منو */
+    background-color: white; /* پس‌زمینه سفید برای لوگو */
+    border-radius: 50%; /* دایره‌ای کردن پس‌زمینه */
+    width: 120px; /* اندازه مناسب برای لوگو */
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px; /* فاصله برای قرار گرفتن لوگو در داخل */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* سایه نرم */
+}
+
+#sidebar .logo-container img {
+    width: 100%; /* لوگو اندازه‌گیری می‌شود */
+    height: auto;
+    border-radius: 50%; /* گرد کردن لوگو */
+    object-fit: contain; /* تناسب ابعاد لوگو */
+}
+
+/* Menu Links */
+#sidebar .nav-link {
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#sidebar .nav-link:hover {
+    background-color: #0056b3; /* تغییر رنگ روی هاور */
+}
+
+#sidebar .active {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 0; /* Reduce padding for mobile view */
+    }
+
+    #sidebar {
+        width: 200px;
+    }
+}
+
