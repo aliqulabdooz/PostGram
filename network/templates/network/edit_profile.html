@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                       value="{{ request.user.email }}" required>
+                                       value="{{ request.user.email }}">
                             </div>
 
                             <!-- Profile Image -->
@@ -52,6 +52,7 @@
                             </div>
 
                             <!-- Buttons -->
+                            {% include 'messages.html' %}
                             <div class="d-flex justify-content-between">
                                 <a href="{% url 'network:profile_view' user.slug %}" class="btn btn-secondary">
                                     Cancel

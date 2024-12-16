@@ -9,4 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }, 100)
+
 })
+
+function toggleCaption(captionId) {
+    const captionElement = document.getElementById(captionId);
+    captionElement.classList.toggle('text-truncate')
+}

@@ -34,10 +34,10 @@
                         <!-- عنوان و کپشن -->
                         <div class="post-details mt-3">
                             <h5 class="fw-bold">{{ post.title }}</h5>
-                            <p class="post-caption text-truncate" id="caption-{{ forloop.counter }}">
+                            <p class="post-caption text-truncate mt-2" id="caption-{{ forloop.counter }}">
                                 {{ post.caption }}
                             </p>
-                            <button class="btn btn-link p-0" onclick="toggleCaption('caption-{{ forloop.counter }}')">
+                            <button class="btn btn-link text-primary p-0" onclick="toggleCaption('caption-{{ forloop.counter }}')">
                                 read more
                             </button>
                         </div>

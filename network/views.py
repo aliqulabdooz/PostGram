@@ -33,6 +33,21 @@ def profile_view(request, slug):
 
 @login_required()
 def profile_edit_view(request):
+    if request.method == "POST":
+        user = request.user
+        try:
+            default_image = request.user.image_profile
+            user.username = request.POST['username']
+            user.email = request.POST['email']
+            user.image_profile = request.FILES['image_profile'] if 'image_profile' in request.FILES else default_image
+            user.bio = request.POST['bio']
+            if not request.POST['username']:
+                messages.error(request, 'username cannot be empty')
+            else:
+                user.save()
+                return redirect(user.get_absolute_url())
+        except IntegrityError as e:
+            messages.error(request, 'username is already taken')
     return render(request, 'network/edit_profile.html')
 
 
