@@ -79,3 +79,38 @@ def addPost_view(request):
 
     else:
         return render(request, 'network/add_post.html')
+
+
+@login_required()
+def edit_post_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        user_posts = request.user.user_posts.all().order_by('-date_created')
+        if request.method == "POST":
+            print(request.FILES)
+            if request.POST['title'] == '':
+                messages.error(request, 'title cannot be empty')
+                return redirect('network:edit_post_view', pk)
+            post.title = request.POST['title']
+            post.image_post = request.FILES['image_post'] if 'image_post' in request.FILES else post.image_post
+            post.caption = request.POST['caption']
+            post.save()
+            return redirect('network:allPosts_view')
+        else:
+            context = {
+                'pk': pk,
+                'posts': user_posts,
+            }
+            return render(request, 'network/all_post.html', context)
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def delete_post_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        post.delete()
+        return redirect(request.user.get_absolute_url())
+    except Http404:
+        return render(request, 'errors/404.html')
