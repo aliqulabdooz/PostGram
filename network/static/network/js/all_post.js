@@ -14,5 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function toggleCaption(captionId) {
     const captionElement = document.getElementById(captionId);
+    const read_more = document.getElementById('read-more')
     captionElement.classList.toggle('text-truncate')
+    if (captionElement.classList.contains('text-truncate')){
+        read_more.textContent = 'read more'
+    }
+    else{
+        read_more.textContent = 'close caption'
+    }
 }
