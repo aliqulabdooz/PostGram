@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100)
 
 })
-
 function toggleCaption(captionId) {
     const captionElement = document.getElementById(captionId);
     const read_more = document.getElementById('read-more')

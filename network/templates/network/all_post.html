@@ -11,7 +11,7 @@
         <div class="container">
             <div class="posts-container mx-auto">
                 {% for post in posts %}
-                    {% if request.resolver_match.url_name == 'edit_post_view' and post.id == pk %}
+                    {% if request.resolver_match.url_name == 'edit_post_view' and pk == post.id %}
                         <div class="post-card mb-4 p-4 shadow rounded" id="{{ post.id }}"
                              style="background-color: #f9f9f9;">
                             <form action="" method="POST" enctype="multipart/form-data">
@@ -70,7 +70,7 @@
                                 <!-- دکمه‌های Save و Cancel -->
                                 {% include 'messages.html' %}
                                 <div class="d-flex justify-content-between mt-4">
-                                    <a href="{% url 'network:profile_view' post.user.slug %}"
+                                    <a href="{% url 'network:allPosts_view' post.user.slug %}?post={{ pk }}"
                                        class="btn btn-secondary px-4 py-2 rounded-3">
                                         Cancel
                                     </a>
@@ -102,7 +102,8 @@
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="dropdownMenuButton{{ post.id }}">
                                         <li>
-                                            <a class="dropdown-item" href="{% url 'network:edit_post_view' post.id %}">
+                                            <a class="dropdown-item edit-post"
+                                               href="{% url 'network:edit_post_view' %}?post={{ post.id }}">
                                                 <i class="bi bi-pencil-square me-2"></i>Edit Post
                                             </a>
                                         </li>

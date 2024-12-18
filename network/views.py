@@ -52,8 +52,12 @@ def profile_edit_view(request):
 
 
 @login_required()
-def allPosts_view(request):
-    user_post = request.user.user_posts.all().order_by('-date_created')
+def allPosts_view(request, slug):
+    try:
+        user = get_object_or_404(CustomUser, slug=slug)
+        user_post = user.user_posts.all().order_by('-date_created')
+    except Http404:
+        return render(request, 'errors/404.html')
     context = {
         'posts': user_post,
     }
@@ -82,7 +86,8 @@ def addPost_view(request):
 
 
 @login_required()
-def edit_post_view(request, pk):
+def edit_post_view(request):
+    pk = int(request.GET.get('post'))
     try:
         post = get_object_or_404(Post, id=pk)
         user_posts = request.user.user_posts.all().order_by('-date_created')
@@ -95,7 +100,7 @@ def edit_post_view(request, pk):
             post.image_post = request.FILES['image_post'] if 'image_post' in request.FILES else post.image_post
             post.caption = request.POST['caption']
             post.save()
-            return redirect('network:allPosts_view')
+            return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
         else:
             context = {
                 'pk': pk,
