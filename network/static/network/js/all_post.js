@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100)
 
 })
+
 function toggleCaption(captionId) {
     const captionElement = document.getElementById(captionId);
     const read_more = document.getElementById('read-more')
@@ -32,7 +33,10 @@ function previewImage(event) {
 
 const imageContainer = document.querySelector('label[for="image"]');
 const overlay = document.getElementById('upload-overlay');
-
+const title = document.getElementById('#title')
+if (title) {
+    title.focus()
+}
 if (imageContainer && overlay) {
     imageContainer.addEventListener('mouseenter', () => {
         overlay.style.display = 'block';

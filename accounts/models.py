@@ -6,7 +6,7 @@ from django.utils.text import slugify
 
 class CustomUser(AbstractUser):
     slug = models.SlugField(unique=True, blank=True)
-    image_profile = models.ImageField(upload_to='accounts/', default='accounts/default-profile.png')
+    image_profile = models.ImageField(upload_to='accounts/', default='default/default-profile.png')
     bio = models.TextField(blank=True)
     USERNAME_REQUIRED = ['username']
 

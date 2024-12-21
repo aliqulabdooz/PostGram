@@ -66,9 +66,11 @@
                                 <p class="card-text text-muted mb-4">
                                     You haven’t created any posts yet. Start sharing your thoughts with the world!
                                 </p>
-                                <a href="{% url 'network:addPost_view' %}" class="btn btn-primary empty-post-btn">
-                                    <i class="bi bi-pencil-square"></i> Create Your First Post
-                                </a>
+                                {% if check_user %}
+                                    <a href="{% url 'network:addPost_view' %}" class="btn btn-primary empty-post-btn">
+                                        <i class="bi bi-pencil-square"></i> Create Your First Post
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

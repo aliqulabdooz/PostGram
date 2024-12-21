@@ -21,12 +21,14 @@ def index_view(request):
 def profile_view(request, slug):
     try:
         user = get_object_or_404(CustomUser, slug=slug)
+        check_user = user == request.user
     except Http404:
         return render(request, 'errors/404.html')
     user_post = user.user_posts.all().order_by('-date_created')
     context = {
         'user': user,
         'posts': user_post,
+        'check_user': check_user,
     }
     return render(request, 'network/profile.html', context)
 
@@ -55,11 +57,13 @@ def profile_edit_view(request):
 def allPosts_view(request, slug):
     try:
         user = get_object_or_404(CustomUser, slug=slug)
+        check_user = request.user == user
         user_post = user.user_posts.all().order_by('-date_created')
     except Http404:
         return render(request, 'errors/404.html')
     context = {
         'posts': user_post,
+        'check_user': check_user,
     }
     return render(request, 'network/all_post.html', context)
 
@@ -115,6 +119,8 @@ def edit_post_view(request):
 def delete_post_view(request, pk):
     try:
         post = get_object_or_404(Post, id=pk)
+        if post.user != request.user:
+            return redirect(request.user.get_absolute_url())
         post.delete()
         return redirect(request.user.get_absolute_url())
     except Http404:
