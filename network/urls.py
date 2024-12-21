@@ -5,6 +5,7 @@ app_name = 'network'
 
 urlpatterns = [
     path('', views.index_view, name='index_view'),
+    path('explore/', views.explore_view, name='explore_view'),
     path('profile/<slug:slug>', views.profile_view, name='profile_view'),
     path('profile_edit/', views.profile_edit_view, name='profile_edit_view'),
     path('allposts/<slug:slug>', views.allPosts_view, name='allPosts_view'),

@@ -17,6 +17,10 @@ def index_view(request):
     return render(request, 'accounts/splash.html', context)
 
 
+def explore_view(request):
+    pass
+
+
 @login_required()
 def profile_view(request, slug):
     try:
