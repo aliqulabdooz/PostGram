@@ -71,3 +71,5 @@ dmypy.json
 # Local configuration files
 local_settings.py
 **/migrations/__pycache__/
+**/network/__pycache__/
+**/accounts/__pycache__/

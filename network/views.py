@@ -17,8 +17,13 @@ def index_view(request):
     return render(request, 'accounts/splash.html', context)
 
 
+@login_required()
 def explore_view(request):
-    pass
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'network/explore.html', context)
 
 
 @login_required()
