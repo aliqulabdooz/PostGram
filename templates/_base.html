@@ -27,7 +27,7 @@
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="#explore" class="nav-link text-white">
+                        <a href="{% url 'network:explore_view' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'explore_view' %}active{% endif %}">
                             <i class="bi bi-grid-fill"></i> Explore
                         </a>
                     </li>

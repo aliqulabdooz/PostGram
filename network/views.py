@@ -19,11 +19,24 @@ def index_view(request):
 
 @login_required()
 def explore_view(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().exclude(user_id=request.user.id)
     context = {
         'posts': posts,
     }
     return render(request, 'network/explore.html', context)
+
+
+@login_required()
+def post_detail_view(request, slug, pk):
+    try:
+        post = get_object_or_404(Post, user__slug=slug, id=pk)
+    except Http404:
+        return render(request, 'errors/404.html')
+    else:
+        context = {
+            'post': post,
+        }
+        return render(request, 'network/post_detail.html', context)
 
 
 @login_required()
