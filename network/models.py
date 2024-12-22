@@ -19,3 +19,11 @@ class Post(models.Model):
         if not self.caption:
             self.caption = 'No text is included for the post.'
         super().save(*args, **kwargs)
+
+
+class Follower(models.Model):
+    follow = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_follow')
+    following = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='user_following')
+
+    def __str__(self):
+        return self.follow.username
