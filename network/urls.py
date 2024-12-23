@@ -13,4 +13,6 @@ urlpatterns = [
     path('add_post/', views.addPost_view, name='addPost_view'),
     path('edit_post/', views.edit_post_view, name='edit_post_view'),
     path('delete_post/<int:pk>', views.delete_post_view, name='delete_post_view'),
+    path('follow/<slug:slug>', views.follow_view, name='follow_view'),
+    path('unfollow/<slug:slug>', views.unfollow_view, name='unfollow_view'),
 ]

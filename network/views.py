@@ -42,8 +42,15 @@ def post_detail_view(request, slug, pk):
 @login_required()
 def profile_view(request, slug):
     try:
+        following_check = None
+        following_count = 0
         user = get_object_or_404(CustomUser, slug=slug)
         check_user = user == request.user
+        following_parameter = request.user.user_follow.first()
+        if not check_user and following_parameter:
+            following_check = following_parameter.following.filter(id=user.id).exists()
+        if Follower.objects.filter(follow_id=user.id).exists():
+            following_count = user.user_follow.first().following.count
     except Http404:
         return render(request, 'errors/404.html')
     user_post = user.user_posts.all().order_by('-date_created')
@@ -51,6 +58,8 @@ def profile_view(request, slug):
         'user': user,
         'posts': user_post,
         'check_user': check_user,
+        'following_check': following_check,
+        'following_count': following_count,
     }
     return render(request, 'network/profile.html', context)
 
@@ -145,5 +154,39 @@ def delete_post_view(request, pk):
             return redirect(request.user.get_absolute_url())
         post.delete()
         return redirect(request.user.get_absolute_url())
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def follow_view(request, slug):
+    try:
+        user = get_object_or_404(CustomUser, slug=slug)
+        if user == request.user:
+            return redirect('network:index_view')
+    except Http404:
+        return render(request, 'errors/404.html')
+    else:
+        follow, created = Follower.objects.get_or_create(follow_id=request.user.id)
+        if follow.following.filter(id=user.id).exists():
+            # I can set a status error
+            return redirect('network:index_view')
+        follow.following.add(user)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+login_required()
+
+
+def unfollow_view(request, slug):
+    try:
+        redirection = ''
+        user = get_object_or_404(CustomUser, slug=slug)
+        if Follower.objects.filter(follow_id=request.user.id).exists():
+            redirection = request.META.get('HTTP_REFERER', '/')
+            follow_check = request.user.user_follow.first().following.remove(user)
+        else:
+            redirection = 'network:index_view'
+        return redirect(redirection)
     except Http404:
         return render(request, 'errors/404.html')

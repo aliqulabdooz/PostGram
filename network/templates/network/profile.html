@@ -25,10 +25,21 @@
                     <!-- توضیحات پروفایل -->
                     <p class="text-muted">{{ user.bio }}</p>
                     <p>
-                        <strong>120 Followers</strong> |
-                        <strong>100 Following</strong> |
+                        <strong>{{ user.user_following.count }} Followers</strong> |
+                        <strong>{{ following_count }} Following</strong> |
                         <strong>{{ posts.count }} Posts</strong>
                     </p>
+                    {% if not check_user %}
+                        <!-- دکمه Follow/Unfollow -->
+                        <button id="follow-btn"
+                                class="btn {% if following_check %}btn-danger{% else %}btn-primary{% endif %}">
+                            {% if following_check %}
+                                <a href="{% url 'network:unfollow_view' user.slug %}" class="text-decoration-none text-white">Unfollow</a>
+                            {% else %}
+                                <a href="{% url 'network:follow_view' user.slug %}" class="text-decoration-none text-white">Follow</a>
+                            {% endif %}
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>
