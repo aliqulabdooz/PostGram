@@ -258,7 +258,7 @@ def postArchive_view(request, pk):
         if user_archive.archive.filter(id=post.id).exists():
             return redirect('network:index_view')
         user_archive.archive.add(post)
-        return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
     except Http404:
         return render(request, 'errors/404.html')
 
@@ -271,7 +271,7 @@ def postUnarchive_view(request, pk):
         if check_archive:
             if check_archive.archive.filter(id=post.id).exists():
                 check_archive.archive.remove(post)
-                return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+                return redirect(request.META.get('HTTP_REFERER', '/'))
         return redirect('network:index_view')
     except Http404:
         return render(request, 'errors/404.html')
