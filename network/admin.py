@@ -12,3 +12,18 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Follower)
 class FollowerAdmin(admin.ModelAdmin):
     list_display = ('follow__username',)
+
+
+@admin.register(PostLike)
+class PostLikeAdmin(admin.ModelAdmin):
+    list_display = ('user_username', 'like_count',)
+
+    def user_username(self, obj):
+        return obj.user.username
+
+    user_username.short_description = 'Username'
+
+    def like_count(self, obj):
+        return obj.like.count()
+
+    like_count.short_description = 'Number of post like'

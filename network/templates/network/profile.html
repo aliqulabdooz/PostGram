@@ -47,7 +47,7 @@
 
         <!-- User Posts Section -->
         <div class="posts-section mt-5">
-            <h4>Your Posts</h4>
+            <h4><a href="{% url 'network:allPosts_view' user.slug %}" class="text-decoration-none">Your Posts</a></h4>
             <div class="row">
                 {% if posts %}
                     <!-- نمایش پست‌ها اگر موجود باشند -->

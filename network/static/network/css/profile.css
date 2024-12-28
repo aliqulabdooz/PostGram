@@ -166,4 +166,10 @@ img.card-img-top.hover-inner-zoom {
     color: #666;
 }
 
+.posts-section h4 a{
+    color: #0c152f;
+}
+.posts-section h4 a:hover{
+    color: #007bff;
+}
 

@@ -29,12 +29,22 @@ def explore_view(request):
 @login_required()
 def post_detail_view(request, slug, pk):
     try:
+        check_like = False
+        check_archive = False
         post = get_object_or_404(Post, user__slug=slug, id=pk)
+        user_like = request.user.user_likes.first()
+        user_archive = request.user.user_archive.first()
+        if user_like:
+            check_like = user_like.like.filter(id=post.id).exists()
+        if user_archive:
+            check_archive = user_archive.archive.filter(id=post.id).exists()
     except Http404:
         return render(request, 'errors/404.html')
     else:
         context = {
             'post': post,
+            'check_like': check_like,
+            'check_archive': check_archive,
         }
         return render(request, 'network/post_detail.html', context)
 
@@ -90,11 +100,21 @@ def allPosts_view(request, slug):
         user = get_object_or_404(CustomUser, slug=slug)
         check_user = request.user == user
         user_post = user.user_posts.all().order_by('-date_created')
+        user_likes = {}
+        user_archives = {}
+        if PostLike.objects.filter(user_id=request.user.id).exists():
+            post_likes = request.user.user_likes.first().like.all()
+            user_likes = set(user_post & post_likes)
+        if PostArchive.objects.filter(user_id=request.user.id).exists():
+            post_archive = request.user.user_archive.first().archive.all()
+            user_archives = set(user_post & post_archive)
     except Http404:
         return render(request, 'errors/404.html')
     context = {
         'posts': user_post,
         'check_user': check_user,
+        'user_likes': user_likes,
+        'user_archives': user_archives,
     }
     return render(request, 'network/all_post.html', context)
 
@@ -175,9 +195,7 @@ def follow_view(request, slug):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-login_required()
-
-
+@login_required()
 def unfollow_view(request, slug):
     try:
         redirection = ''
@@ -190,3 +208,91 @@ def unfollow_view(request, slug):
         return redirect(redirection)
     except Http404:
         return render(request, 'errors/404.html')
+
+
+@login_required()
+def postLike_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        user_like, created = PostLike.objects.get_or_create(user_id=request.user.id)
+        if user_like.like.filter(id=post.id).exists():
+            return redirect('network:index_view')
+        user_like.like.add(post)
+        return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def postDislike_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        check_like = request.user.user_likes.first()
+        if check_like:
+            if check_like.like.filter(id=post.id).exists():
+                check_like.like.remove(post)
+                return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+        return redirect('network:index_view')
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def add_comment_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        if 'comment' in request.POST:
+            comment = PostComment.objects.create(user=request.user, comment=request.POST['comment'])
+            comment.add(post)
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+        messages.error(request, 'comment cannot be empty!!')
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def postArchive_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        user_archive, created = PostArchive.objects.get_or_create(user_id=request.user.id)
+        if user_archive.archive.filter(id=post.id).exists():
+            return redirect('network:index_view')
+        user_archive.archive.add(post)
+        return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def postUnarchive_view(request, pk):
+    try:
+        post = get_object_or_404(Post, id=pk)
+        check_archive = request.user.user_archive.first()
+        if check_archive:
+            if check_archive.archive.filter(id=post.id).exists():
+                check_archive.archive.remove(post)
+                return redirect(f'{reverse("network:allPosts_view", args=[post.user.slug])}?post={pk}')
+        return redirect('network:index_view')
+    except Http404:
+        return render(request, 'errors/404.html')
+
+
+@login_required()
+def archive_show_view(request):
+    check_user = False
+    user_likes = {}
+    user_archives = {}
+    posts = request.user.user_archive.first().archive.all().order_by('-date_created')
+    if PostLike.objects.filter(user_id=request.user.id).exists():
+        post_likes = request.user.user_likes.first().like.all()
+        user_likes = set(posts & post_likes)
+    if PostArchive.objects.filter(user_id=request.user.id).exists():
+        post_archive = request.user.user_archive.first().archive.all()
+        user_archives = set(posts & post_archive)
+    context = {
+        'posts': posts,
+        'check_user': check_user,
+        'user_likes': user_likes,
+        'user_archives': user_archives,
+    }
+    return render(request, 'network/all_post.html', context)

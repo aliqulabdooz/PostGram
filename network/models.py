@@ -47,7 +47,7 @@ class PostArchive(models.Model):
 
 class PostComment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_commented')
-    post = models.ManyToManyField(Post)
+    post = models.ManyToManyField(Post, related_name='post_commented')
     comment = models.TextField(blank=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

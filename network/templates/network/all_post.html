@@ -140,10 +140,44 @@
                             <!-- ایکون‌ها -->
                             <div class="post-actions d-flex justify-content-between mt-3">
                                 <div>
-                                    <i class="bi bi-heart me-3"></i>
+                                    {% if user_likes %}
+                                        {% if post in user_likes %}
+                                            <a href="{% url 'network:postDislike_view' post.id %}"
+                                               class="text-decoration-none text-dark">
+                                                <i class="bi bi-heart-fill me-3 text-danger"></i>
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'network:postLike_view' post.id %}"
+                                               class="text-decoration-none text-dark">
+                                                <i class="bi bi-heart me-3"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'network:postLike_view' post.id %}"
+                                           class="text-decoration-none text-dark">
+                                            <i class="bi bi-heart me-3"></i>
+                                        </a>
+                                    {% endif %}
                                     <i class="bi bi-chat"></i>
                                 </div>
-                                <i class="bi bi-bookmark"></i>
+                                {% if user_archives %}
+                                    {% if post in user_archives %}
+                                        <a href="{% url 'network:postUnarchive_view' post.id %}"
+                                           class="text-decoration-none text-dark">
+                                            <i class="bi bi-bookmark-fill me-3 text-primary"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'network:postArchive_view' post.id %}"
+                                           class="text-decoration-none text-dark">
+                                            <i class="bi bi-bookmark"></i>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{% url 'network:postArchive_view' post.id %}"
+                                       class="text-decoration-none text-dark">
+                                        <i class="bi bi-bookmark"></i>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     {% endif %}

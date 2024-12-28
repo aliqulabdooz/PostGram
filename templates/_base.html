@@ -27,7 +27,8 @@
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{% url 'network:explore_view' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'explore_view' %}active{% endif %}">
+                        <a href="{% url 'network:explore_view' %}"
+                           class="nav-link text-white {% if request.resolver_match.url_name == 'explore_view' %}active{% endif %}">
                             <i class="bi bi-grid-fill"></i> Explore
                         </a>
                     </li>
@@ -38,7 +39,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'network:profile_edit_view' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'profile_edit_view' %}active{% endif %}" >
+                        <a href="{% url 'network:profile_edit_view' %}"
+                           class="nav-link text-white {% if request.resolver_match.url_name == 'profile_edit_view' %}active{% endif %}">
                             <i class="bi bi-gear-fill"></i> Settings
                         </a>
                     </li>
@@ -46,6 +48,12 @@
                         <a href="{% url 'network:profile_view' request.user.slug %}"
                            class="nav-link text-white {% if request.resolver_match.url_name == 'profile_view' %}active{% endif %}">
                             <i class="bi bi-person-fill"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'network:archive_show_view' %}"
+                           class="nav-link text-white {% if request.resolver_match.url_name == 'archive_show_view' %}active{% endif %}">
+                            <i class="bi bi-archive-fill"></i> Saved Posts
                         </a>
                     </li>
                     <li class="nav-item">
